@@ -91,8 +91,17 @@ sys_uptime(void)
 }
 
 
-int sys_hello(void)
+void sys_hello(void)
 {
   cprintf("Hello, world from kernel!\n");
+  // return 0;
+}
+
+int sys_helloYou(void)
+{
+  char* name;
+  if(argstr(0, &name) < 0)
+    return -1;
+  cprintf("Hello, %s, from kernel!\n", name);
   return 0;
 }
