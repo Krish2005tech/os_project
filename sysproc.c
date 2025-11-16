@@ -123,3 +123,12 @@ int sys_pstree(void)
     pstree();
     return 0;
 }
+
+
+int sys_isprocvalid(void)
+{
+    int pid;
+    if (argint(0, &pid) < 0)
+        return -1;
+    return isprocvalid(pid);
+}

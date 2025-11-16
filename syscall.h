@@ -25,4 +25,4 @@
 #define SYS_getChildren 24
 #define SYS_getSibling 25
 #define SYS_pstree  26  // next available
-
+#define SYS_isprocvalid 27

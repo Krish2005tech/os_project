@@ -104,3 +104,10 @@ memmove(void *vdst, const void *vsrc, int n)
     *dst++ = *src++;
   return vdst;
 }
+
+
+
+// int isprocvalid(int pid)
+// {
+//     return syscall(SYS_isprocvalid, pid);
+// }

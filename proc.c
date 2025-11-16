@@ -610,3 +610,27 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+
+
+int
+isprocvalid(int pid)
+{
+    struct proc *p;
+
+    acquire(&ptable.lock);
+    for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+        if (p->pid == pid) {
+            if (p->state == SLEEPING ||
+                p->state == RUNNING ||
+                p->state == RUNNABLE) {
+                release(&ptable.lock);
+                return 1;
+            }
+            release(&ptable.lock);
+            return 0;
+        }
+    }
+    release(&ptable.lock);
+    return 0;   // PID not found
+}

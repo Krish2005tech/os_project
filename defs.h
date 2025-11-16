@@ -165,6 +165,9 @@ int             sys_getSibling(void);
 void            pstree(void);
 int            sys_pstree(void);
 
+int isprocvalid(int);
+int sys_isprocvalid(void);
+
 // timer.c
 void            timerinit(void);
 
