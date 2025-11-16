@@ -168,6 +168,9 @@ int            sys_pstree(void);
 int isprocvalid(int);
 int sys_isprocvalid(void);
 
+int get_proc_state(int pid, char *buf, int size);
+
+
 // timer.c
 void            timerinit(void);
 

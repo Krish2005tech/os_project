@@ -634,3 +634,55 @@ isprocvalid(int pid)
     release(&ptable.lock);
     return 0;   // PID not found
 }
+
+
+
+int
+get_proc_state(int pid, char *buf, int size)
+{
+    struct proc *p;
+    char *state;
+
+    acquire(&ptable.lock);
+
+    // Search for process
+    for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+        if (p->pid == pid) {
+
+            // Convert enum -> string
+            switch (p->state) {
+            case UNUSED:    state = "UNUSED"; break;
+            case EMBRYO:    state = "EMBRYO"; break;
+            case SLEEPING:  state = "SLEEPING"; break;
+            case RUNNABLE:  state = "RUNNABLE"; break;
+            case RUNNING:   state = "RUNNING"; break;
+            case ZOMBIE:    state = "ZOMBIE"; break;
+            default:        state = "UNKNOWN"; break;
+            }
+
+            // Copy into user buffer safely
+            int len = strlen(state);
+            if (len + 1 > size)
+                len = size - 1;
+
+            // copyout: kernel → user
+            if (copyout(myproc()->pgdir,
+                        (uint)buf,
+                        state,
+                        len) < 0) {
+                release(&ptable.lock);
+                return 0;
+            }
+
+            // null-terminate inside user buffer
+            char nullterm = '\0';
+            copyout(myproc()->pgdir, (uint)(buf + len), &nullterm, 1);
+
+            release(&ptable.lock);
+            return 1;
+        }
+    }
+
+    release(&ptable.lock);
+    return 0; // pid not found
+}

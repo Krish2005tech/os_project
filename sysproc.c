@@ -132,3 +132,21 @@ int sys_isprocvalid(void)
         return -1;
     return isprocvalid(pid);
 }
+
+int
+sys_get_proc_state(void)
+{
+    int pid;
+    char *buf;
+    int size;
+
+    if (argint(0, &pid) < 0)
+        return -1;
+    if (argptr(1, &buf, 1) < 0)
+        return -1;
+    if (argint(2, &size) < 0)
+        return -1;
+
+    return get_proc_state(pid, buf, size);
+}
+

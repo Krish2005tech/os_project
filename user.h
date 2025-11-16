@@ -30,6 +30,8 @@ void getSibling(void);
 void pstree(void);
 // int isProcValid(int pid);
 int isprocvalid(int pid);
+int get_proc_state(int pid, char *buf, int size);
+
 
 // ulib.c
 int stat(const char*, struct stat*);
