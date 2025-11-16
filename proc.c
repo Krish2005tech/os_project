@@ -88,6 +88,8 @@ allocproc(void)
 found:
   p->state = EMBRYO;
   p->pid = nextpid++;
+  p->syscall_count = 0;
+
 
   release(&ptable.lock);
 
@@ -124,6 +126,8 @@ userinit(void)
   extern char _binary_initcode_start[], _binary_initcode_size[];
 
   p = allocproc();
+  p->syscall_count = 0;
+
   
   initproc = p;
   if((p->pgdir = setupkvm()) == 0)
@@ -727,4 +731,23 @@ get_proc_name(int pid, char *buf, int size)
     release(&ptable.lock);
 
     return found;
+}
+
+
+
+int get_num_syscall(int pid) {
+    struct proc *p;
+
+    acquire(&ptable.lock);
+
+    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+        if(p->pid == pid){
+            int count = p->syscall_count;
+            release(&ptable.lock);
+            return count;
+        }
+    }
+
+    release(&ptable.lock);
+    return -1;   // pid not found
 }

@@ -34,6 +34,8 @@ int get_proc_state(int pid, char *buf, int size);
 int fill_proc_name(int pid, char *name);
 int get_proc_name(int pid, char *buf, int size);
 
+int get_num_syscall(int pid);
+
 
 // ulib.c
 int stat(const char*, struct stat*);

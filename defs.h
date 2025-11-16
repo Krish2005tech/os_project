@@ -179,6 +179,10 @@ int get_proc_name(int pid, char *buf, int size);
 int sys_get_proc_name(void);
 
 
+int get_num_syscall(int pid);
+int sys_get_num_syscall(void);
+
+
 // timer.c
 void            timerinit(void);
 

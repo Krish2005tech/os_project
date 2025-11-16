@@ -182,3 +182,14 @@ sys_get_proc_name(void)
     return get_proc_name(pid, buf, size);
 }
 
+
+int sys_get_num_syscall(void)
+{
+    int pid;
+
+    if(argint(0, &pid) < 0)
+        return -1;
+
+    return get_num_syscall(pid);
+}
+

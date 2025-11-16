@@ -112,6 +112,7 @@ extern int sys_isprocvalid(void);
 extern int sys_get_proc_state(void);
 extern int sys_fill_proc_name(void);
 extern int sys_get_proc_name(void);
+extern int sys_get_num_syscall(void);
 
 
 
@@ -146,6 +147,7 @@ static int (*syscalls[])(void) = {
 [SYS_get_proc_state] sys_get_proc_state,
 [SYS_fill_proc_name] sys_fill_proc_name,
 [SYS_get_proc_name] = sys_get_proc_name,
+[SYS_get_num_syscall] = sys_get_num_syscall,
 
 };
 
@@ -157,6 +159,7 @@ syscall(void)
 
   num = curproc->tf->eax;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
+    curproc->syscall_count++;
     curproc->tf->eax = syscalls[num]();
   } else {
     cprintf("%d %s: unknown sys call %d\n",
