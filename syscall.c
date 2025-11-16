@@ -114,6 +114,9 @@ extern int sys_fill_proc_name(void);
 extern int sys_get_proc_name(void);
 extern int sys_get_num_syscall(void);
 extern int sys_get_num_timer_interrupts(void);
+extern int sys_welcomeFunction(void);
+extern int sys_welcomeDone(void);
+
 
 
 static int (*syscalls[])(void) = {
@@ -149,6 +152,9 @@ static int (*syscalls[])(void) = {
 [SYS_get_proc_name] = sys_get_proc_name,
 [SYS_get_num_syscall] = sys_get_num_syscall,
 [SYS_get_num_timer_interrupts] = sys_get_num_timer_interrupts,
+[SYS_welcomeFunction] sys_welcomeFunction,
+[SYS_welcomeDone]     sys_welcomeDone,
+
 
 };
 

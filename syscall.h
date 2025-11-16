@@ -31,6 +31,8 @@
 #define SYS_get_proc_name  30
 #define SYS_get_num_syscall   31  // pick next available number
 #define SYS_get_num_timer_interrupts  32   // choose next available number
+#define SYS_welcomeFunction  33  // choose the next free number present in your file
+#define SYS_welcomeDone      34
 
 
 

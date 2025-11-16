@@ -56,6 +56,15 @@ struct proc {
 
   int syscall_count;  
   int num_timer_interrupts;
+
+
+// in kernel/proc.h, inside struct proc
+// (add near other fields like pid, parent, name, etc.)
+uint welcome_fn;        // address set by parent via welcomeFunction(), 0 if none
+uint saved_eip;         // child's original EIP saved at fork time
+int started_welcome;    // 1 if child was made to start in welcome_fn
+
+
 };
 
 // Process memory is laid out contiguously, low addresses first:

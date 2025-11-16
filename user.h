@@ -37,6 +37,9 @@ int get_proc_name(int pid, char *buf, int size);
 int get_num_syscall(int pid);
 int get_num_timer_interrupts(int pid);
 
+int welcomeFunction(int addr);   // user passes function pointer cast to int
+int welcomeDone(void);
+
 
 // ulib.c
 int stat(const char*, struct stat*);

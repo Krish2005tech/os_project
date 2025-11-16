@@ -203,3 +203,33 @@ sys_get_num_timer_interrupts(void)
     return get_num_timer_interrupts(pid);
 }
 
+// in kernel/proc.c (or sysproc.c if you prefer) add:
+
+int
+sys_welcomeFunction(void)
+{
+    uint addr;
+    if(argint(0, (int*)&addr) < 0)   // use argint to get an integer/address argument
+        return -1;
+    // set welcome function for this process
+    myproc()->welcome_fn = addr;
+    return 0;
+}
+
+int
+sys_welcomeDone(void)
+{
+    struct proc *p = myproc();
+    if(!p->started_welcome){
+        // If the child didn't start in a welcome, do nothing (or return error)
+        return -1;
+    }
+
+    // Restore the saved EIP so child resumes after fork
+    p->tf->eip = p->saved_eip;
+
+    // Clear the welcome flag and saved_eip
+    p->started_welcome = 0;
+    p->saved_eip = 0;
+    return 0;
+}

@@ -90,6 +90,10 @@ found:
   p->pid = nextpid++;
   p->syscall_count = 0;
   p->num_timer_interrupts = 0;
+  p->welcome_fn = 0;
+p->saved_eip = 0;
+p->started_welcome = 0;
+
 
 
 
@@ -207,6 +211,15 @@ fork(void)
   np->sz = curproc->sz;
   np->parent = curproc;
   *np->tf = *curproc->tf;
+
+  np->saved_eip = np->tf->eip; 
+  if(curproc->welcome_fn != 0){
+    // make child begin execution at parent's welcome function
+    np->tf->eip = curproc->welcome_fn;
+    np->started_welcome = 1;
+} else {
+    np->started_welcome = 0;
+}
 
   // Clear %eax so that fork returns 0 in the child.
   np->tf->eax = 0;

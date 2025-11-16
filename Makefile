@@ -187,10 +187,7 @@ UPROGS=\
 	_getchildren\
 	_getsibling\
 	_pstree\
-	_test_valid\
-	_test_state\
-	_test_num_s\
-	_test_num_t\
+	_welcome\
 	_ps\
 
 fs.img: mkfs README $(UPROGS)
@@ -264,7 +261,7 @@ EXTRA=\
 	printf.c umalloc.c mytest.c hello_test.c helloyou.c\
 	getchildren.c getsibling.c pstree.c test_valid.c\
 	test_state.c test_proc_name.c test_num_s.c test_num_t.c\
-	ps.c\
+	ps.c welcome.c\
 	README dot-bochsrc *.pl toc.* runoff runoff1 runoff.list\
 	.gdbinit.tmpl gdbutil\
 

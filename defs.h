@@ -186,6 +186,10 @@ int sys_get_num_syscall(void);
 int get_num_timer_interrupts(int pid);
 int sys_get_num_timer_interrupts(void);
 
+int sys_welcomeFunction(void);
+int sys_welcomeDone(void);
+
+
 
 // timer.c
 void            timerinit(void);
