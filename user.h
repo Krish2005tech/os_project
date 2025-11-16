@@ -31,6 +31,8 @@ void pstree(void);
 // int isProcValid(int pid);
 int isprocvalid(int pid);
 int get_proc_state(int pid, char *buf, int size);
+int fill_proc_name(int pid, char *name);
+int get_proc_name(int pid, char *buf, int size);
 
 
 // ulib.c

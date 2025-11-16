@@ -686,3 +686,45 @@ get_proc_state(int pid, char *buf, int size)
     release(&ptable.lock);
     return 0; // pid not found
 }
+
+
+int fill_proc_name(int pid, char *name)
+{
+    struct proc *p;
+    int found = 0;
+
+    acquire(&ptable.lock);
+
+    for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+        if (p->pid == pid) {
+            // Copy into p->name (max 15 chars + null terminator)
+            safestrcpy(p->name, name, sizeof(p->name));
+            found = 1;
+            break;
+        }
+    }
+
+    release(&ptable.lock);
+    return found;
+}
+int
+get_proc_name(int pid, char *buf, int size)
+{
+    struct proc *p;
+    int found = 0;
+
+    acquire(&ptable.lock);
+
+    for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+        if (p->pid == pid) {
+            // Process exists
+            safestrcpy(buf, p->name, size);
+            found = 1;
+            break;
+        }
+    }
+
+    release(&ptable.lock);
+
+    return found;
+}

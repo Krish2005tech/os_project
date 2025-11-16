@@ -171,6 +171,14 @@ int sys_isprocvalid(void);
 int get_proc_state(int pid, char *buf, int size);
 
 
+int fill_proc_name(int, char*);
+int sys_fill_proc_name(void);
+
+
+int get_proc_name(int pid, char *buf, int size);
+int sys_get_proc_name(void);
+
+
 // timer.c
 void            timerinit(void);
 
