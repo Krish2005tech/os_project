@@ -105,3 +105,9 @@ int sys_helloYou(void)
   cprintf("Hello, %s, from kernel!\n", name);
   return 0;
 }
+
+int sys_getChildren(void)
+{
+    getChildren();
+    return 0;
+}

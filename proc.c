@@ -224,6 +224,33 @@ fork(void)
 // Exit the current process.  Does not return.
 // An exited process remains in the zombie state
 // until its parent calls wait() to find out it exited.
+
+void getChildren(void)
+{
+    struct proc *p;
+    int count = 0;
+    struct proc *cur = myproc();
+
+    cprintf("Children PID’s are:\n");
+
+    acquire(&ptable.lock);
+
+    for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+        if (p->parent == cur) {
+            cprintf("%d\n", p->pid);
+            count++;
+        }
+    }
+
+    release(&ptable.lock);
+
+    cprintf("No. of Children: %d\n", count);
+}
+
+
+
+
+
 void
 exit(void)
 {
