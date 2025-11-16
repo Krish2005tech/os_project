@@ -35,6 +35,7 @@ int fill_proc_name(int pid, char *name);
 int get_proc_name(int pid, char *buf, int size);
 
 int get_num_syscall(int pid);
+int get_num_timer_interrupts(int pid);
 
 
 // ulib.c

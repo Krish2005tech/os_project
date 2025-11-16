@@ -55,6 +55,7 @@ struct proc {
 
 
   int syscall_count;  
+  int num_timer_interrupts;
 };
 
 // Process memory is laid out contiguously, low addresses first:

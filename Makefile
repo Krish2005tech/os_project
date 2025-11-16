@@ -191,6 +191,7 @@ UPROGS=\
 	_test_state\
 	_test_proc_name\
 	_test_num_s\
+	_test_num_t\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)
@@ -262,7 +263,7 @@ EXTRA=\
 	ln.c ls.c mkdir.c rm.c stressfs.c usertests.c wc.c zombie.c\
 	printf.c umalloc.c mytest.c hello_test.c helloyou.c\
 	getchildren.c getsibling.c pstree.c test_valid.c\
-	test_state.c test_proc_name.c test_num_s.c\
+	test_state.c test_proc_name.c test_num_s.c test_num_t.c\
 	README dot-bochsrc *.pl toc.* runoff runoff1 runoff.list\
 	.gdbinit.tmpl gdbutil\
 

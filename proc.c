@@ -89,6 +89,8 @@ found:
   p->state = EMBRYO;
   p->pid = nextpid++;
   p->syscall_count = 0;
+  p->num_timer_interrupts = 0;
+
 
 
   release(&ptable.lock);
@@ -127,6 +129,8 @@ userinit(void)
 
   p = allocproc();
   p->syscall_count = 0;
+  p->num_timer_interrupts = 0;
+
 
   
   initproc = p;
@@ -750,4 +754,22 @@ int get_num_syscall(int pid) {
 
     release(&ptable.lock);
     return -1;   // pid not found
+}
+
+
+int
+get_num_timer_interrupts(int pid)
+{
+    struct proc *p;
+
+    acquire(&ptable.lock);
+    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+        if(p->pid == pid){
+            int n = p->num_timer_interrupts;
+            release(&ptable.lock);
+            return n;
+        }
+    }
+    release(&ptable.lock);
+    return -1;  // pid not found
 }

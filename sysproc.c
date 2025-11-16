@@ -193,3 +193,13 @@ int sys_get_num_syscall(void)
     return get_num_syscall(pid);
 }
 
+
+int
+sys_get_num_timer_interrupts(void)
+{
+    int pid;
+    if(argint(0, &pid) < 0)
+        return -1;
+    return get_num_timer_interrupts(pid);
+}
+
