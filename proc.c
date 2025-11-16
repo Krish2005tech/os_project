@@ -272,6 +272,35 @@ void getSibling(void)
 
 
 
+void
+pstree(void)
+{
+    struct proc *p, *c;
+    struct proc *cur = myproc();
+
+    acquire(&ptable.lock);
+
+    cprintf("%d (%s)\n", cur->pid, cur->name);
+
+    // children
+    for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+        if (p->parent == cur) {
+            cprintf("\t%d (%s)\n", p->pid, p->name);
+
+            // grandchildren
+            for (c = ptable.proc; c < &ptable.proc[NPROC]; c++) {
+                if (c->parent == p) {
+                    cprintf("\t\t%d (%s)\n", c->pid, c->name);
+                }
+            }
+        }
+    }
+
+    release(&ptable.lock);
+}
+
+
+
 
 void
 exit(void)

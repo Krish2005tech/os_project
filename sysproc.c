@@ -117,3 +117,9 @@ int sys_getSibling(void)
     getSibling();
     return 0;
 }
+
+int sys_pstree(void)
+{
+    pstree();
+    return 0;
+}

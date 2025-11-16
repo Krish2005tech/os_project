@@ -162,6 +162,9 @@ int             sys_getChildren(void);
 void            getSibling(void);
 int             sys_getSibling(void);
 
+void            pstree(void);
+int            sys_pstree(void);
+
 // timer.c
 void            timerinit(void);
 
