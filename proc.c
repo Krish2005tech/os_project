@@ -231,7 +231,7 @@ void getChildren(void)
     int count = 0;
     struct proc *cur = myproc();
 
-    cprintf("Children PID’s are:\n");
+    cprintf("Children PID's are:\n");
 
     acquire(&ptable.lock);
 
@@ -245,6 +245,28 @@ void getChildren(void)
     release(&ptable.lock);
 
     cprintf("No. of Children: %d\n", count);
+}
+
+void getSibling(void)
+{
+    struct proc *p;
+    int count = 0;
+    struct proc *cur = myproc();
+
+    cprintf("Siblings PID's are:\n");
+
+    acquire(&ptable.lock);
+
+    for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+        if (p->parent == cur->parent && p != cur) {
+            cprintf("%d\n", p->pid);
+            count++;
+        }
+    }
+
+    release(&ptable.lock);
+
+    cprintf("No. of Siblings: %d\n", count);
 }
 
 

@@ -159,6 +159,8 @@ void            syscall(void);
 
 void            getChildren(void);
 int             sys_getChildren(void);
+void            getSibling(void);
+int             sys_getSibling(void);
 
 // timer.c
 void            timerinit(void);

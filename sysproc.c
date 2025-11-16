@@ -111,3 +111,9 @@ int sys_getChildren(void)
     getChildren();
     return 0;
 }
+
+int sys_getSibling(void)
+{
+    getSibling();
+    return 0;
+}
