@@ -103,6 +103,7 @@ extern int sys_unlink(void);
 extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
+
 extern int sys_hello(void);
 extern int sys_helloYou(void);
 extern int sys_getChildren(void);
@@ -141,6 +142,7 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+
 [SYS_hello]   sys_hello,
 [SYS_helloYou] sys_helloYou,
 [SYS_getChildren] sys_getChildren,
@@ -149,9 +151,9 @@ static int (*syscalls[])(void) = {
 [SYS_isprocvalid] sys_isprocvalid,
 [SYS_get_proc_state] sys_get_proc_state,
 [SYS_fill_proc_name] sys_fill_proc_name,
-[SYS_get_proc_name] = sys_get_proc_name,
-[SYS_get_num_syscall] = sys_get_num_syscall,
-[SYS_get_num_timer_interrupts] = sys_get_num_timer_interrupts,
+[SYS_get_proc_name]  sys_get_proc_name,
+[SYS_get_num_syscall] sys_get_num_syscall,
+[SYS_get_num_timer_interrupts]  sys_get_num_timer_interrupts,
 [SYS_welcomeFunction] sys_welcomeFunction,
 [SYS_welcomeDone]     sys_welcomeDone,
 

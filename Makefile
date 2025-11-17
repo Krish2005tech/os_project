@@ -187,6 +187,11 @@ UPROGS=\
 	_getchildren\
 	_getsibling\
 	_pstree\
+	_test_valid\
+	_test_state\
+	_test_proc_name\
+	_test_num_s\
+	_test_num_t\
 	_welcome\
 	_ps\
 
